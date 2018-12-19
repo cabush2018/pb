@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)--><ajsv>
+    <diagram creationDate="2018-Dec-18 17:56" licenseGrade="ide-single" licenseeName="cristian_busoi" licenseeOrganization="Personal" populationMethod="manual" version="1.9.1.v20170319-1519">
+        <filterScript>
+
+hide all fields &#13;
+hide all operations &#13;
+hide fields which reference their declarer
+
+</filterScript>
+        <class className="java.util.Map" modelMemberId="java.util.Map" project="lock-limiter" xLocation="2125" yLocation="1136"/>
+        <class className="java.util.concurrent.BlockingQueue" modelMemberId="java.util.concurrent.BlockingQueue" project="EIDAS-Commons" xLocation="2689" yLocation="1174"/>
+        <class className="java.net.URL" modelMemberId="java.net.URL" project="lock-limiter" xLocation="3178" yLocation="746"/>
+        <class className="pb.limiter.locklimiter.service.FulfillmentServiceClient" modelMemberId="pb.limiter.locklimiter.service.FulfillmentServiceClient" project="lock-limiter" xLocation="3140" yLocation="470"/>
+        <class className="pb.limiter.locklimiter.endpoint.LockLimiterController" modelMemberId="pb.limiter.locklimiter.endpoint.LockLimiterController" project="lock-limiter" xLocation="1077" yLocation="902"/>
+        <class className="pb.limiter.locklimiter.service.RequestService" modelMemberId="pb.limiter.locklimiter.service.RequestService" project="lock-limiter" xLocation="2215" yLocation="472"/>
+        <class className="pb.limiter.locklimiter.service.ItemService" modelMemberId="pb.limiter.locklimiter.service.ItemService" project="lock-limiter" xLocation="1521" yLocation="481"/>
+    </diagram>
+</ajsv>
