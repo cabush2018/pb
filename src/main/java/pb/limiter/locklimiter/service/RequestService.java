@@ -7,6 +7,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 
@@ -90,28 +91,30 @@ public class RequestService {
 	}
 
 	private void processQueue(@NotNull BlockingQueue<Request> queue) {
-		synchronized (queue) {
-			Request request = queue.peek();
+		Request request = queue.peek();
 
-			// if queue is empty, nothing to process for the item
-			if (request == null) {
-				return;
-			}
+		// if queue is empty, nothing to process for the item
+		if (request == null) {
+			return;
+		}
 
-			// if datacenter is locked no further requests would be processed
-			if (itemRepository.getOne(request.getDataCenterId()).isLocked()) {
-				return;
-			}
+		// if datacenter is locked no further requests would be processed
+		if (itemRepository.getOne(request.getDataCenterId()).isLocked()) {
+			return;
+		}
 
-			// if request's item is locked no further requests; wait to receive
-			// the fulfillment
-			if (itemRepository.getOne(request.getItemId()).isLocked()) {
-				return;
-			}
+		// if request's item is locked no further requests; wait to receive
+		// the fulfillment
+		if (itemRepository.getOne(request.getItemId()).isLocked()) {
+			return;
+		}
 
+		try {
 			if (itemService.lockItem(request.getItemId(), true)) {
 				forwardToFulfillment(request);
 			}
+		} catch (OptimisticLockException e) {
+			return;
 		}
 	}
 
